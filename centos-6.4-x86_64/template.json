@@ -6,18 +6,31 @@
         "scripts/base.sh",
         "scripts/ruby.sh",
         "scripts/chef.sh",
-        "scripts/puppet.sh",
         "scripts/vagrant.sh",
+        "scripts/vmware.sh",
         "scripts/virtualbox.sh",
         "scripts/cleanup.sh",
         "scripts/zerodisk.sh"
       ],
       "override": {
         "virtualbox": {
-          "execute_command": "echo 'veewee'|sudo -S sh '{{.Path}}'"
+          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         },
         "vmware": {
-          "execute_command": "echo 'veewee'|sudo -S sh '{{.Path}}'"
+          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
+        }
+      }
+    },
+    {
+      "type": "file",
+      "override": {
+        "virtualbox": {
+          "source": "/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso",
+          "destination": "/tmp/VBoxGuestAdditions.iso"
+        },
+        "vmware": {
+          "source": "/Applications/VMware Fusion.app/Contents/Library/isoimages/linux.iso",
+          "destination": "/tmp/linux.iso"
         }
       }
     }
@@ -28,18 +41,18 @@
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
-      "boot_wait": "15s",
+      "boot_wait": "5s",
       "disk_size": 10140,
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
-      "iso_checksum": "690138908de516b6e5d7d180d085c3f3",
+      "iso_checksum": "4a5fa01c81cc300f4729136e28ebe600",
       "iso_checksum_type": "md5",
-      "iso_url": "http://www.mirrorservice.org/sites/mirror.centos.org/6.3/isos/x86_64/CentOS-6.3-x86_64-netinstall.iso",
-      "ssh_username": "veewee",
-      "ssh_password": "veewee",
+      "iso_url": "http://ftp.hosteurope.de/mirror/centos.org/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'veewee'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
@@ -62,18 +75,18 @@
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
-      "boot_wait": "15s",
+      "boot_wait": "5s",
       "disk_size": 10140,
       "guest_os_type": "rhel6-64",
       "http_directory": "http",
-      "iso_checksum": "690138908de516b6e5d7d180d085c3f3",
+      "iso_checksum": "4a5fa01c81cc300f4729136e28ebe600",
       "iso_checksum_type": "md5",
-      "iso_url": "http://www.mirrorservice.org/sites/mirror.centos.org/6.3/isos/x86_64/CentOS-6.3-x86_64-netinstall.iso",
-      "ssh_username": "veewee",
-      "ssh_password": "veewee",
+      "iso_url": "http://ftp.hosteurope.de/mirror/centos.org/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'veewee'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "vmx_data": {
         "memsize": "480",
         "numvcpus": "1",

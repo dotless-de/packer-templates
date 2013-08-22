@@ -1,0 +1,1 @@
+../../_rhel/cleanup.sh
