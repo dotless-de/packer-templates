@@ -81,4 +81,11 @@
       }
     }
   ]
+
+  , "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "packer-centos64_x86_64.{{.Provider}}.box"
+    }
+  ]
 }
