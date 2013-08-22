@@ -46,16 +46,12 @@
       "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
         [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "480"
+          "modifyvm", "{{.Name}}",
+          "--memory", "512"
         ],
         [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "1"
+          "modifyvm", "{{.Name}}",
+          "--cpus", "2"
         ]
       ]
     },
@@ -79,9 +75,9 @@
       "tools_upload_flavor": "linux",
       "tools_upload_path": "/tmp/{{.Flavor}}.iso",
       "vmx_data": {
-        "memsize": "480",
-        "numvcpus": "1",
-        "cpuid.coresPerSocket": "1"
+        "memsize": "512",
+        "numvcpus": "2",
+        "cpuid.coresPerSocket": "2"
       }
     }
   ]
