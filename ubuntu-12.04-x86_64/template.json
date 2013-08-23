@@ -3,7 +3,14 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/postinstall.sh"
+        "scripts/base.sh",
+        "scripts/ruby.sh",
+        "scripts/chef.sh",
+        "scripts/vagrant.sh",
+        "scripts/vmware.sh",
+        "scripts/virtualbox.sh",
+        "scripts/cleanup.sh",
+        "scripts/zerodisk.sh"
       ],
       "override": {
         "virtualbox": {
