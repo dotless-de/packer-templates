@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Bail if we are not running inside VirtualBox.
 (lspci | grep -i virtualbox > /dev/null) || {
 	exit 0

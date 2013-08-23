@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Bail if we are not running inside VMWare.
 (lspci | grep -i vmware > /dev/null) || {
   exit 0
