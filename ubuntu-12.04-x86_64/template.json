@@ -93,4 +93,11 @@
       }
     }
   ]
+
+  , "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "packer-ubuntu1204_x86_64.{{.Provider}}.box"
+    }
+  ]
 }
