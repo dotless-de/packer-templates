@@ -9,4 +9,4 @@ enabled=1
 gpgcheck=0
 EOM
 
-yum -y install kernel-devel-`uname -r`
+yum -y install kernel-devel-`uname -r` fuse fuse-devel fuse-libs
