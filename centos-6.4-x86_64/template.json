@@ -73,7 +73,7 @@
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "tools_upload_flavor": "linux",
-      "tools_upload_path": "/tmp/{{.Flavor}}.iso",
+      "tools_upload_path": "/tmp/vmware-tools.iso",
       "vmx_data": {
         "memsize": "512",
         "numvcpus": "2",

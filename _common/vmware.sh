@@ -11,7 +11,7 @@ fi
 
 # Install the VMWare Tools from a linux ISO.
 mkdir -p /mnt/vmware
-mount -o loop /tmp/linux.iso /mnt/vmware
+mount -o loop /tmp/vmware-tools.iso /mnt/vmware
 
 cd /tmp
 tar xzf /mnt/vmware/VMwareTools-*.tar.gz
