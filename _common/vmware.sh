@@ -4,6 +4,11 @@
   exit 0
 }
 
+if [ ! -f /tmp/vmware-tools.iso ]; then
+	echo "VMware Tools iso file missing."
+	exit 1
+fi
+
 # Install the VMWare Tools from a linux ISO.
 mkdir -p /mnt/vmware
 mount -o loop /tmp/linux.iso /mnt/vmware

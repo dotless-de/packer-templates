@@ -4,6 +4,12 @@
 	exit 0
 }
 
+if [ ! -f /tmp/VBoxGuestAdditions.iso ]; then
+	echo "VirtualBox Guest Additions iso file missing."
+	exit 1
+fi
+
+
 # Installing the virtualbox guest additions
 mkdir -p /mnt/virtualbox
 mount -o loop /tmp/VBoxGuestAdditions.iso /mnt/virtualbox
