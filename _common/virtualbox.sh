@@ -9,14 +9,10 @@ if [ ! -f /tmp/VBoxGuestAdditions.iso ]; then
 	exit 1
 fi
 
+trap "umount /mnt/virtualbox; rm -rf /mnt/virtualbox /tmp/VBoxGuestAdditions.iso" EXIT
 
 # Installing the virtualbox guest additions
 mkdir -p /mnt/virtualbox
 mount -o loop /tmp/VBoxGuestAdditions.iso /mnt/virtualbox
 
 sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11
-
-umount /mnt/virtualbox
-rm -rf /mnt/virtualbox
-rm -rf /tmp/VBoxGuestAdditions.iso
-
