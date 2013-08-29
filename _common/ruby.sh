@@ -91,8 +91,8 @@ cd "ruby-install-$ruby_install_version/"
 log "Installing ruby-install ..."
 make install || (error "installing ruby-install failed"; exit 0)
 
-log "Installing MRI ruby 1.9.3 in global space..."
-$PREFIX/bin/ruby-install -i /usr ruby 1.9.3-p429
+log "Installing MRI ruby 1.9.3 as /opt/rubies/embedded ..."
+$PREFIX/bin/ruby-install -i /opt/rubies/embedded ruby 1.9.3-p429
 
 #
 # Configuration
@@ -101,18 +101,24 @@ log "Configuring chruby ..."
 
 config="[ -n \"\$BASH_VERSION\" ] || [ -n \"\$ZSH_VERSION\" ] || return
 
-source $PREFIX/share/chruby/chruby.sh"
+source $PREFIX/share/chruby/chruby.sh
+source $PREFIX/share/chruby/auto.sh
+
+chruby embedded"
 
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
 	echo "$config" > /etc/profile.d/chruby.sh
-	echo "source $PREFIX/share/chruby/auto.sh" >> /etc/profile.d/chruby.sh
-	log "Setup complete! Please restart the shell"
 else
 	warning "Could not determine where to add chruby configuration."
 	warning "Please add the following configuration where appropriate:"
 	echo
 	echo "$config"
-	echo "source $PREFIX/share/chruby/auto.sh"
 	echo
 fi
+
+# We need to reset $PREFIX so chruby looks for rubies in /opt/rubies, not $PREFIX/opt/rubies
+log "Setup complete! Sourcing new config"
+PREFIX=	eval "$config"
+
+exit 0
