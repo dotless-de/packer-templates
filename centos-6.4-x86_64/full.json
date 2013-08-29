@@ -4,11 +4,11 @@
       "type": "shell",
       "scripts": [
         "scripts/base.sh",
-        "scripts/ruby.sh",
-        "scripts/chef.sh",
         "scripts/vagrant.sh",
         "scripts/vmware.sh",
         "scripts/virtualbox.sh",
+        "scripts/ruby.sh",
+        "scripts/chef.sh",
         "scripts/cleanup.sh",
         "scripts/zerodisk.sh"
       ],
@@ -85,7 +85,8 @@
   , "post-processors": [
     {
       "type": "vagrant",
-      "output": "packer-centos64_x86_64.{{.Provider}}.box"
+      "output": "packer-centos64_x86_64.{{.Provider}}.box",
+      "keep_input_artifact": true
     }
   ]
 }
