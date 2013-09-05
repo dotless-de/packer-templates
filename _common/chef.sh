@@ -1,8 +1,2 @@
-if [ -f /etc/profile.d/chruby.sh ]; then
-	echo "sourcing chruby to get default ruby environment"
-	source /etc/profile.d/chruby.sh
-fi
 
-# Install Chef
-gem install --no-ri --no-rdoc chef --version '~> 11.6.0'
-
+curl -L https://www.opscode.com/chef/install.sh | bash -s -- -v "11.6.0"

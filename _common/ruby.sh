@@ -85,14 +85,11 @@ log "Downloading ruby-install ..."
 wget -O "ruby-install-$ruby_install_version.tar.gz" "https://github.com/postmodern/ruby-install/archive/v$ruby_install_version.tar.gz"
 
 log "Extracting ruby-install $ruby_install_version ..."
-tar -xzvf "ruby-install-$ruby_install_version.tar.gz"
+tar -xzf "ruby-install-$ruby_install_version.tar.gz"
 cd "ruby-install-$ruby_install_version/"
 
 log "Installing ruby-install ..."
 make install || (error "installing ruby-install failed"; exit 0)
-
-log "Installing MRI ruby 1.9.3 as /opt/rubies/embedded ..."
-$PREFIX/bin/ruby-install -i /opt/rubies/embedded ruby 1.9.3-p429
 
 #
 # Configuration
@@ -103,8 +100,7 @@ config="[ -n \"\$BASH_VERSION\" ] || [ -n \"\$ZSH_VERSION\" ] || return
 
 source $PREFIX/share/chruby/chruby.sh
 source $PREFIX/share/chruby/auto.sh
-
-chruby embedded"
+"
 
 if [[ -d /etc/profile.d/ ]]; then
 	# Bash/Zsh
@@ -116,6 +112,16 @@ else
 	echo "$config"
 	echo
 fi
+
+#
+# Install rubies for vagrant
+#
+log "Installing MRI ruby 1.9.3 for vagrant ..."
+sudo -u vagrant -i $PREFIX/bin/ruby-install ruby 1.9.3-p429
+
+log "Installing bundler for vagrant ruby"
+sudo -u vagrant -i $PREFIX/bin/chruby-exec ruby 1.9.3-p429 -- gem install bundler
+
 
 # We need to reset $PREFIX so chruby looks for rubies in /opt/rubies, not $PREFIX/opt/rubies
 log "Setup complete! Sourcing new config"
