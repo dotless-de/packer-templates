@@ -1,7 +1,7 @@
 packer-templates
 ================
 
-a collection of packer templates we (meight) use
+a collection of packer templates we (might) use
 
 
 ## Usage
