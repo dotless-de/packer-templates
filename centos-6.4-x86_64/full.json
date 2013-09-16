@@ -76,8 +76,7 @@
       "tools_upload_path": "/tmp/vmware-tools.iso",
       "vmx_data": {
         "memsize": "512",
-        "numvcpus": "2",
-        "cpuid.coresPerSocket": "2"
+        "numvcpus": "2"
       }
     }
   ]

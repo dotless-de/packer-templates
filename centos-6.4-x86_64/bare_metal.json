@@ -23,7 +23,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
       "boot_wait": "5s",
-      "disk_size": 10140,
+      "disk_size": 20480,
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "iso_checksum": "4a5fa01c81cc300f4729136e28ebe600",
@@ -33,7 +33,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "sudo halt -p",
       "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
       "guest_additions_url": "/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso",
       "virtualbox_version_file": ".vbox_version",
@@ -54,7 +54,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
       "boot_wait": "5s",
-      "disk_size": 10140,
+      "disk_size": 20480,
       "guest_os_type": "rhel6-64",
       "http_directory": "http",
       "iso_checksum": "4a5fa01c81cc300f4729136e28ebe600",
@@ -64,13 +64,12 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "sudo halt -p",
       "tools_upload_flavor": "linux",
       "tools_upload_path": "/tmp/vmware-tools.iso",
       "vmx_data": {
         "memsize": "512",
-        "numvcpus": "2",
-        "cpuid.coresPerSocket": "2"
+        "numvcpus": "2"
       }
     }
   ]
