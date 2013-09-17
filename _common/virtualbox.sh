@@ -15,4 +15,4 @@ trap "umount /mnt/virtualbox; rm -rf /mnt/virtualbox /tmp/VBoxGuestAdditions.iso
 mkdir -p /mnt/virtualbox
 mount -o loop /tmp/VBoxGuestAdditions.iso /mnt/virtualbox
 
-sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11
+sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; true
