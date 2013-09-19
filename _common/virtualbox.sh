@@ -15,4 +15,6 @@ trap "umount /mnt/virtualbox; rm -rf /mnt/virtualbox /tmp/VBoxGuestAdditions.iso
 mkdir -p /mnt/virtualbox
 mount -o loop /tmp/VBoxGuestAdditions.iso /mnt/virtualbox
 
-sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11; true
+(sh /mnt/virtualbox/VBoxLinuxAdditions.run --nox11) || {
+	echo "VirtualBox Guest Additions Installer failed. This may be safely ignored..." >&2
+}
