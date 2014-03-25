@@ -1,0 +1,95 @@
+{
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/base.sh"
+      ],
+      "override": {
+        "virtualbox": {
+          "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+        },
+        "vmware": {
+          "execute_command": "echo 'vagrant'|sudo -S bash '{{.Path}}'"
+        }
+      }
+    }
+  ],
+  "builders": [
+    {
+      "type": "virtualbox",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us <wait>",
+        "hostname={{ .Name }} <wait>",
+        "fb=false debconf/frontend=noninteractive <wait>",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false <wait>",
+        "initrd=/install/initrd.gz -- <enter><wait>"
+      ],
+      "boot_wait": "4s",
+      "disk_size": 20480,
+      "guest_os_type": "Ubuntu_64",
+      "http_directory": "http",
+      "iso_checksum": "00a6e0bc6995e703170d940a24e9759c",
+      "iso_checksum_type": "md5",
+      "iso_url": "file:///Users/shrink/trusty-server-amd64.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "sudo halt -p",
+      "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
+      "guest_additions_url": "/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vboxmanage": [
+        [
+          "modifyvm", "{{.Name}}",
+          "--memory", "512"
+        ],
+        [
+          "modifyvm", "{{.Name}}",
+          "--cpus", "2"
+        ]
+      ]
+    },
+    {
+      "type": "vmware",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us <wait>",
+        "hostname={{ .Name }} <wait>",
+        "fb=false debconf/frontend=noninteractive <wait>",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false <wait>",
+        "initrd=/install/initrd.gz -- <enter><wait>"
+      ],
+      "boot_wait": "4s",
+      "disk_size": 20480,
+      "guest_os_type": "ubuntu-64",
+      "http_directory": "http",
+      "iso_checksum": "de8bb52bb9c5fd9220429499f302c0a3",
+      "iso_checksum_type": "md5",
+      "iso_url": "file:///Users/shrink/trusty-server-amd64.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "sudo halt -p",
+      "tools_upload_flavor": "linux",
+      "tools_upload_path": "/tmp/vmware-tools.iso",
+      "vmx_data": {
+        "memsize": "2048",
+        "numvcpus": "2"
+      }
+    }
+  ]
+
+  , "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "packer-ubuntu1404_x86_64.{{.Provider}}.box",
+      "keep_input_artifact": true
+    }
+  ]
+}
